@@ -14,18 +14,15 @@ its new-thread screen with the prompt focused.
 
 - `app.tsx` registers the overlay and the `open` command.
 - `components/ProjectPickerOverlay.tsx` is the modal.
-- `server.ts` is the required backend entry; it only logs.
+- `server.ts` claims Cmd+N on load and gives it back on dispose.
 
 ## Shortcut
 
-The command's default shortcut is Cmd+N, which collides with BB's built-in
-`thread.new`. BB leaves a colliding plugin default unbound, so rebind once in
-Settings → Keyboard, or from a shell:
-
-```
-bb settings keyboard set thread.new disabled
-bb settings keyboard set plugin:project-picker/open <shortcut>
-```
+While the plugin runs it owns Cmd+N and moves BB's `thread.new` to
+Cmd+Shift+O by writing two keyboard overrides. If you already overrode
+`thread.new` or `plugin:project-picker/open`, it leaves your bindings alone.
+Disabling or uninstalling the plugin removes the overrides it wrote, so Cmd+N
+opens a new thread again. Overrides you changed afterwards are kept.
 
 Check the effective binding with `bb settings keyboard list`. The command is
 also in the palette (Mod+Shift+P) as "Project Picker: new thread in project…".
