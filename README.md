@@ -6,9 +6,10 @@ its new-thread screen with the prompt focused.
 - Type to filter projects by name or path.
 - ↑/↓ moves the highlight, Enter picks it, Cmd+1…9 picks a visible row, Esc
   or a click outside closes.
-- "No project" (the personal project) is always first. The rest are ordered
-  by their most recently updated thread; projects without threads come last,
-  alphabetically.
+- The project you are viewing comes first and starts highlighted, so Cmd+N
+  then Enter starts a thread there. "No project" (the personal project)
+  comes next. The rest are ordered by their most recently updated thread;
+  projects without threads come last, alphabetically.
 
 ## Files
 

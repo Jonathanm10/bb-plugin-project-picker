@@ -1,7 +1,9 @@
 ## What you get
 
-- A centered picker on Cmd+N with a search field and your projects. "No
-  project" comes first, then projects by their most recent thread activity.
+- A centered picker on Cmd+N with a search field and your projects. The
+  project you are viewing comes first and starts highlighted, so Cmd+N then
+  Enter starts a thread there. "No project" is next, then projects by their
+  most recent thread activity.
 - Type to filter by project name or path.
 - Arrow keys and Enter, or Cmd+1 to Cmd+9, to pick. Esc or a click outside
   closes.
