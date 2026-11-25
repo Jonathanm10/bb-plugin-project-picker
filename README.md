@@ -30,6 +30,12 @@ also in the palette (Mod+Shift+P) as "Project Picker: new thread in project…".
 ## Install
 
 ```
+bb plugin install git:https://github.com/Jonathanm10/bb-plugin-project-picker.git@^0.1.0
+```
+
+From a local checkout:
+
+```
 npm install
 bb plugin install .
 ```

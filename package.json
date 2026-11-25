@@ -1,6 +1,12 @@
 {
   "name": "bb-plugin-project-picker",
   "version": "0.1.0",
+  "description": "Cmd+N project picker for bb: pick a project, start a new thread in it.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonathanm10/bb-plugin-project-picker.git"
+  },
   "type": "module",
   "engines": {
     "bb": ">=0.50",
@@ -8,9 +14,9 @@
   },
   "bb": {
     "name": "Project Picker",
-    "description": "Cmd+N opens a project picker; choosing a project starts a new thread in it.",
+    "description": "Cmd+N opens a searchable project list; picking one starts a new thread in that project.",
     "branding": {
-      "icon": "FolderSearch"
+      "icon": "FolderOpen"
     },
     "server": "./server.ts",
     "app": "./app.tsx",
