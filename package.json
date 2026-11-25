@@ -1,6 +1,6 @@
 {
   "name": "bb-plugin-project-picker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cmd+N project picker for bb: pick a project, start a new thread in it.",
   "license": "MIT",
   "repository": {
