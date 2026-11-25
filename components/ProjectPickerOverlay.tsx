@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   experimental_useSidebarThreads,
+  useBbContext,
   useBbNavigate,
   useSdk,
 } from "@get-bb/plugin-sdk/app";
@@ -24,12 +25,16 @@ function initials(name: string): string {
   return letters.toUpperCase();
 }
 
-/** Personal project first, then most recent thread activity, then name. */
+/** Current project first, then personal, then most recent thread activity, then name. */
 function sortProjects(
   projects: PickerProject[],
   lastActivity: Map<string, number>,
+  currentProjectId: string | null,
 ): PickerProject[] {
   return [...projects].sort((a, b) => {
+    if ((a.id === currentProjectId) !== (b.id === currentProjectId)) {
+      return a.id === currentProjectId ? -1 : 1;
+    }
     if (a.isPersonal !== b.isPersonal) return a.isPersonal ? -1 : 1;
     const recency = (lastActivity.get(b.id) ?? 0) - (lastActivity.get(a.id) ?? 0);
     return recency !== 0 ? recency : a.name.localeCompare(b.name);
@@ -47,6 +52,7 @@ function matches(project: PickerProject, query: string): boolean {
 export function ProjectPickerOverlay() {
   const sdk = useSdk();
   const navigate = useBbNavigate();
+  const { projectId: currentProjectId } = useBbContext();
   const { threads } = experimental_useSidebarThreads();
   const scopeProps = usePortalScopeProps();
   const [open, setOpen] = useState(false);
@@ -110,10 +116,10 @@ export function ProjectPickerOverlay() {
 
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return sortProjects(projects ?? [], lastActivity).filter((project) =>
-      matches(project, needle),
+    return sortProjects(projects ?? [], lastActivity, currentProjectId).filter(
+      (project) => matches(project, needle),
     );
-  }, [projects, lastActivity, query]);
+  }, [projects, lastActivity, currentProjectId, query]);
 
   const close = (restoreFocus: boolean) => {
     setOpen(false);
